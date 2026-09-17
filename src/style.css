@@ -1,0 +1,279 @@
+:root {
+    color-scheme: dark;
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
+    background: #101a32;
+    color: #f5f7ff;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    background: #101a32;
+}
+
+body {
+    overscroll-behavior: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+button {
+    font: inherit;
+}
+
+#game-shell {
+    position: relative;
+    width: 100%;
+    height: 100dvh;
+    min-height: 480px;
+    overflow: hidden;
+    isolation: isolate;
+    touch-action: none;
+}
+
+#application {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    touch-action: none;
+}
+
+.hud,
+.instructions,
+.controls {
+    position: absolute;
+    z-index: 2;
+}
+
+.hud {
+    top: max(18px, env(safe-area-inset-top));
+    right: max(18px, env(safe-area-inset-right));
+    left: max(18px, env(safe-area-inset-left));
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    pointer-events: none;
+}
+
+.title-block,
+.reset-button,
+.instructions,
+.direction-pad {
+    border: 1px solid rgba(216, 229, 255, 0.2);
+    background: rgba(16, 26, 50, 0.82);
+    box-shadow: 0 14px 34px rgba(2, 7, 21, 0.28);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+}
+
+.title-block {
+    max-width: min(72vw, 320px);
+    padding: 13px 16px 14px;
+    border-radius: 16px;
+}
+
+.eyebrow {
+    margin: 0 0 3px;
+    color: #a8c7ff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+}
+
+h1 {
+    margin: 0;
+    color: #ffffff;
+    font-size: clamp(1.1rem, 4.8vw, 1.45rem);
+    line-height: 1.25;
+}
+
+#position-readout {
+    margin: 5px 0 0;
+    color: #dce7ff;
+    font-size: 0.88rem;
+    line-height: 1.35;
+}
+
+.reset-button {
+    min-width: 104px;
+    min-height: 48px;
+    padding: 10px 13px;
+    border-radius: 14px;
+    color: #ffffff;
+    font-size: 0.86rem;
+    font-weight: 700;
+    pointer-events: auto;
+    cursor: pointer;
+    touch-action: manipulation;
+}
+
+.reset-button:active,
+.direction-button:active {
+    transform: translateY(2px) scale(0.97);
+}
+
+.instructions {
+    right: max(18px, env(safe-area-inset-right));
+    bottom: calc(18px + env(safe-area-inset-bottom));
+    left: max(18px, env(safe-area-inset-left));
+    max-width: 286px;
+    margin: 0;
+    padding: 10px 13px;
+    border-radius: 12px;
+    color: #e2ebff;
+    font-size: 0.78rem;
+    line-height: 1.4;
+    pointer-events: none;
+}
+
+.controls {
+    right: max(18px, env(safe-area-inset-right));
+    bottom: calc(76px + env(safe-area-inset-bottom));
+    display: flex;
+    justify-content: flex-end;
+    pointer-events: auto;
+}
+
+.direction-pad {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(56px, 68px));
+    grid-template-rows: repeat(2, minmax(56px, 68px));
+    gap: 10px;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.direction-button {
+    min-width: 56px;
+    min-height: 56px;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 16px;
+    background: rgba(98, 139, 212, 0.9);
+    color: #ffffff;
+    font-size: 1.15rem;
+    font-weight: 800;
+    line-height: 1;
+    cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 100ms ease, background-color 100ms ease;
+}
+
+.direction-button:hover,
+.direction-button:focus-visible {
+    background: #79a8f2;
+}
+
+.direction-button:focus-visible,
+.reset-button:focus-visible {
+    outline: 3px solid #ffe28a;
+    outline-offset: 3px;
+}
+
+.up {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.left {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.down {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.right {
+    grid-column: 3;
+    grid-row: 2;
+}
+
+@media (max-width: 380px) {
+    .hud {
+        top: max(12px, env(safe-area-inset-top));
+        right: max(12px, env(safe-area-inset-right));
+        left: max(12px, env(safe-area-inset-left));
+    }
+
+    .title-block {
+        padding: 11px 13px 12px;
+    }
+
+    .reset-button {
+        min-width: 92px;
+        padding-inline: 9px;
+        font-size: 0.78rem;
+    }
+
+    .controls {
+        right: max(12px, env(safe-area-inset-right));
+        bottom: calc(68px + env(safe-area-inset-bottom));
+    }
+
+    .direction-pad {
+        grid-template-columns: repeat(3, 54px);
+        grid-template-rows: repeat(2, 54px);
+        gap: 7px;
+        padding: 8px;
+    }
+
+    .direction-button {
+        min-width: 54px;
+        min-height: 54px;
+        border-radius: 14px;
+    }
+
+    .instructions {
+        right: max(12px, env(safe-area-inset-right));
+        bottom: calc(12px + env(safe-area-inset-bottom));
+        left: max(12px, env(safe-area-inset-left));
+        max-width: 240px;
+        font-size: 0.72rem;
+    }
+}
+
+@media (orientation: landscape) and (max-height: 560px) {
+    #game-shell {
+        min-height: 320px;
+    }
+
+    .hud {
+        top: max(10px, env(safe-area-inset-top));
+    }
+
+    .controls {
+        right: max(14px, env(safe-area-inset-right));
+        bottom: calc(14px + env(safe-area-inset-bottom));
+    }
+
+    .instructions {
+        right: auto;
+        bottom: calc(14px + env(safe-area-inset-bottom));
+        left: max(14px, env(safe-area-inset-left));
+        max-width: 240px;
+    }
+
+    .direction-pad {
+        grid-template-columns: repeat(3, 52px);
+        grid-template-rows: repeat(2, 52px);
+        gap: 7px;
+        padding: 8px;
+    }
+
+    .direction-button {
+        min-width: 52px;
+        min-height: 52px;
+    }
+}
