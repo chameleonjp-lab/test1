@@ -1,0 +1,19 @@
+{
+  "name": "test1-playcanvas-box",
+  "version": "0.1.0",
+  "private": true,
+  "description": "PlayCanvas Engineで作った、箱を動かす3Dゲーム試作品",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "playcanvas": "2.22.2"
+  },
+  "devDependencies": {
+    "vite": "8.3.0"
+  }
+}
